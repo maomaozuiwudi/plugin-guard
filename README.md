@@ -95,6 +95,50 @@ cp -r plugin-guard ~/.hermes/skills/
 - 静态源码分析 + 正则模式匹配 + 熵检测
 - 支持本地路径和 GitHub URL 两种扫描入口
 
+## ❓ 常见问题 (FAQ)
+
+<details>
+<summary><b>PluginGuard能检测哪些风险？</b></summary>
+
+能检测 11 类安全风险，覆盖 4 级风险评级（安全、低危、中危、高危/严重），包括：恶意代码注入、未授权网络请求、敏感信息泄露、文件系统越权、OS命令执行、base64混淆/编码、eval/exec动态执行等。
+</details>
+
+<details>
+<summary><b>需要联网吗？</b></summary>
+
+不需要。PluginGuard 完全纯本地运行，不联网、不上传任何代码，所有扫描在本机完成，保障隐私安全。
+</details>
+
+<details>
+<summary><b>支持扫描GitHub仓库链接吗？</b></summary>
+
+支持。可以直接传入 GitHub 仓库 URL，工具自动拉取代码并扫描。也支持扫描本地 Hermes 技能目录。
+</details>
+
+<details>
+<summary><b>和其他安全工具比有什么不同？</b></summary>
+
+PluginGuard 专为 Hermes Agent 插件/技能生态设计，能识别 Hermes 特有的风险模式（如 web_search、terminal、write_file 的滥用）。对比通用安全工具（如 VirusTotal），检测范围更聚焦、误报率更低。
+</details>
+
+<details>
+<summary><b>支持批量扫描多个插件吗？</b></summary>
+
+支持。提供 batch_scan.py 脚本，可一次性扫描多个技能或插件目录，自动汇总输出风险报告。
+</details>
+
+<details>
+<summary><b>风险评级是怎么划分的？</b></summary>
+
+0-20 安全 → 21-50 低危 → 51-80 中危 → 81-100 高危/严重。评分基于风险类型组合与严重程度加权计算。
+</details>
+
+<details>
+<summary><b>扫描结果可以导出吗？</b></summary>
+
+目前支持控制台输出，可配合重定向 `>` 保存为文本文件，或通过 Hermes 结果回调机制集成到 CI/CD 流程中。
+</details>
+
 ## 许可证
 
 MIT
